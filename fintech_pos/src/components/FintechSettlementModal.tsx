@@ -313,11 +313,12 @@ export const FintechSettlementModal: React.FC<FintechSettlementModalProps> = ({
           }),
         }
       );
-    } catch (e) {
-      console.log('[FintechModal] One-click approval completed locally');
+    } catch {
+      console.log('[FintechModal] One-click approval fallback (local only)');
     }
 
-    setTimeout(() => onPaymentConfirmed('upi'), 800);
+    // Notify parent after UI settled – small delay for smooth animation
+    setTimeout(() => onPaymentConfirmed('upi'), 200);
   }, [billId, grandTotal, tableLabel, onPaymentConfirmed]);
 
   const handleSimulateUpiSuccess = handleOneClickApprove;
